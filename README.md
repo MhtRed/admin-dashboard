@@ -1,6 +1,6 @@
 # admin-dashboard
 
-This is an dashboard developped using create-react-app:
+This is an Admin Dashboard designed using create-react-app:
 
 ## Technologies & Libraries used:
 

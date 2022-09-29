@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
@@ -10,12 +10,18 @@ import MedicalInformationOutlinedIcon from "@mui/icons-material/MedicalInformati
 import SettingsIcon from "@mui/icons-material/Settings";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
+import { Link } from "react-router-dom";
+import { darkModeContext } from "../../context/darkModeContext";
 
 export const Sidebar = () => {
+  const{dispatch} = useContext(darkModeContext)
   return (
     <div className="sidebar">
       <div className="top">
-        <span className="logo">ADMIN</span>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="logo">ADMIN</span>
+        </Link>
       </div>
       <hr />
       <div className="center">
@@ -26,18 +32,30 @@ export const Sidebar = () => {
             <span>Dashboard</span>
           </li>
           <p className="title">LISTS</p>
-          <li>
-            <PeopleOutlineIcon className="icon" />
-            <span>Users</span>
-          </li>
-          <li>
-            <Inventory2OutlinedIcon className="icon" />
-            <span>Products</span>
-          </li>
-          <li>
-            <ViewStreamOutlinedIcon className="icon" />
-            <span>Orders</span>
-          </li>
+          <Link to="/users" style={{ textDecoration: "none" }}>
+            <li>
+              <PeopleOutlineIcon className="icon" />
+              <span>Users</span>
+            </li>
+          </Link>
+          <Link to="/products" style={{ textDecoration: "none" }}>
+            <li>
+              <Inventory2OutlinedIcon className="icon" />
+              <span>Products</span>
+            </li>
+          </Link>
+          <Link to="/orders" style={{ textDecoration: "none" }}>
+            <li>
+              <ViewStreamOutlinedIcon className="icon" />
+              <span>Orders</span>
+            </li>
+          </Link>
+          <Link to="/delivery" style={{ textDecoration: "none" }}>
+            <li>
+              <LocalShippingOutlinedIcon className="icon" />
+              <span>Delivery</span>
+            </li>
+          </Link>
           <p className="title">USEFUL</p>
           <li>
             <AssessmentOutlinedIcon className="icon" />
@@ -56,7 +74,7 @@ export const Sidebar = () => {
             <SettingsIcon className="icon" />
             <span>Settings</span>
           </li>
-            <p className="title">USER</p>
+          <p className="title">USER</p>
           <li>
             <PersonOutlineOutlinedIcon className="icon" />
             <span>Profile</span>
@@ -68,8 +86,8 @@ export const Sidebar = () => {
         </ul>
       </div>
       <div className="bottom">
-        <div className="colorOption"></div>
-        <div className="colorOption"></div>
+        <div className="colorOption" onClick={()=>dispatch({type: "LIGHT"})}></div>
+        <div className="colorOption" onClick={()=>dispatch({type: "DARK"})}></div>
       </div>
     </div>
   );
